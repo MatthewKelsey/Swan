@@ -37,9 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var puppeteer_1 = require("puppeteer");
-function scrapeHorseRacingOdds(url) {
+function scrapeHorseRaces(url) {
     return __awaiter(this, void 0, void 0, function () {
-        var browser, page, horseNames, horseOdds, mergedData;
+        var browser, page, races, racesArray;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, puppeteer_1.default.launch({ headless: false })];
@@ -51,31 +51,27 @@ function scrapeHorseRacingOdds(url) {
                     return [4 /*yield*/, page.goto(url)];
                 case 3:
                     _a.sent();
-                    // Add a delay to ensure that the page has loaded completely
-                    return [4 /*yield*/, page.waitForSelector('.runner-name-value')];
+                    return [4 /*yield*/, page.waitForSelector(".slot.race-item")];
                 case 4:
-                    // Add a delay to ensure that the page has loaded completely
                     _a.sent();
-                    return [4 /*yield*/, page.$$eval('.runner-name-value', function (elements) {
-                            return elements.map(function (el) { var _a; return (_a = el.textContent) === null || _a === void 0 ? void 0 : _a.trim(); });
+                    return [4 /*yield*/, page.$$eval(".slot.race-item", function (elements) {
+                            return elements.map(function (el) { var _a; return (_a = el.textContent) === null || _a === void 0 ? void 0 : _a.trim().split("\n").map(function (item) { return item.trim(); }); });
                         })];
                 case 5:
-                    horseNames = _a.sent();
-                    return [4 /*yield*/, page.$$eval('span.ui-runner-price', function (prices) { return prices.map(function (price) { return price.textContent || ''; }); })];
-                case 6:
-                    horseOdds = _a.sent();
-                    mergedData = horseNames.map(function (name, i) { return ({
-                        horseName: name || '',
-                        odds: horseOdds[i] || '',
-                    }); });
-                    console.log(mergedData);
+                    races = _a.sent();
+                    racesArray = races.map(function (race) {
+                        return {
+                            time: race[0],
+                            venue: race[1],
+                        };
+                    });
                     return [4 /*yield*/, browser.close()];
-                case 7:
+                case 6:
                     _a.sent();
-                    return [2 /*return*/, mergedData];
+                    return [2 /*return*/, JSON.stringify(racesArray)];
             }
         });
     });
 }
-var url = 'https://www.betfair.com/sport/horse-racing/meeting?eventId=32241670&raceTime=1680775200000&dayToSearch=20230406&marketId=924.354900826';
-scrapeHorseRacingOdds(url);
+var url = "https://www.betfair.com/sport/horse-racing";
+scrapeHorseRaces(url).then(function (data) { return console.log(data); });

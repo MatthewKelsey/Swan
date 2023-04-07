@@ -1,12 +1,18 @@
 import React from 'react';
 import './App.css';
-import Greet from './components/Greet';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from './components/Register';
+
 
 function App() {
   return (
-    <div className="App">
-     <Greet name='user' messageCount={0} isLoggeIn={false} />
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/register' element={<Register />} />
+    </Routes>
+    
+    </BrowserRouter>
+   
   );
 }
 

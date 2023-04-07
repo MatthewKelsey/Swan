@@ -1,13 +1,112 @@
-import React from 'react';
-type RegisterProps = {
 
+import { useNavigate } from "react-router-dom";
+import { register } from "../api";
+import { useState , FormEvent} from "react";
+
+interface User {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
 }
-function Register(props:RegisterProps) {
+
+const initialState: User = {
+  email: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+};
+
+export default function Register(): JSX.Element {
+
+  const [state, setState] = useState<User>(initialState);
+  
+
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    const { name, value } = e.currentTarget;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { email, password, firstName, lastName } = state;
+    const user: User = { email, password, firstName, lastName };
+    const res = await register(user);
+    if (res.status === 409) {
+      alert(`${res.message}`);
+      setState(initialState);
+    
+    } else {
+    ;
+    }
+  };
+
+  const loginHandle = () => {
+   
+  };
+
+  const validateForm = (): boolean => {
     return (
-        <div>
-            
-        </div>
+      !state.email || !state.password || !state.firstName || !state.lastName
     );
-}
+  };
 
-export default Register;
+  return (
+    <section className="register">
+     
+      <h2>Register</h2>
+      <form className="form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Email"
+          name="email"
+          value={state.email}
+          onChange={handleChange}
+        />
+        <br></br>
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={state.password}
+          onChange={handleChange}
+        />
+        <br></br>
+        <input
+          type="text"
+          placeholder="First name"
+          name="firstName"
+          value={state.firstName}
+          onChange={handleChange}
+        />
+        <br></br>
+        <input
+          type="text"
+          placeholder="Surname"
+          name="lastName"
+          value={state.lastName}
+          onChange={handleChange}
+        />
+        <br></br>
+        <button
+          className="form-submit"
+          type="submit"
+          disabled={validateForm()}
+        >
+          &nbsp;Register&nbsp;
+        </button>
+      </form>
+      <br></br>
+      
+      <br></br>
+      <br></br>
+      <button onClick={loginHandle} className="form-submit">
+        Login
+      </button>
+    </section>
+  );
+}
