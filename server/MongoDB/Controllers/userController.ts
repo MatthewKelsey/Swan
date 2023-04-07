@@ -15,7 +15,7 @@ export const registerUser = async (
       res.status(409).send({ message: "User already exists", status: 409 });
       return;
     }
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = password && await bcrypt.hash(password, saltRounds);
     const newUser: IUser = new User({
       email,
       password: hashedPassword,

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { scrapeHorseRacingOdds, scrapeHorseRaces } from "../../WebScrapers/RaceOdds";
-
+import { Race } from "../../WebScrapers/RaceOdds";
 export async function eventFinder(req: Request, res: Response) {
   try {
     const events = await scrapeHorseRaces("https://www.betfair.com/sport/horse-racing");

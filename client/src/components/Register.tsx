@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { register } from "../api";
 import { useState , FormEvent} from "react";
 
-interface User {
+export interface User {
   email: string;
   password: string;
   firstName: string;
@@ -18,7 +18,7 @@ const initialState: User = {
 };
 
 export default function Register(): JSX.Element {
-
+const navigate= useNavigate()
   const [state, setState] = useState<User>(initialState);
   
 
@@ -32,21 +32,22 @@ export default function Register(): JSX.Element {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+console.log('in handle submit')
     const { email, password, firstName, lastName } = state;
-    const user: User = { email, password, firstName, lastName };
-    const res = await register(user);
+    const newUser: User = { email, password, firstName, lastName };
+    const res = await register(newUser);
     if (res.status === 409) {
       alert(`${res.message}`);
       setState(initialState);
     
     } else {
+      navigate('/home')
     ;
     }
   };
 
   const loginHandle = () => {
-   
+   navigate('/login')
   };
 
   const validateForm = (): boolean => {
@@ -101,7 +102,7 @@ export default function Register(): JSX.Element {
         </button>
       </form>
       <br></br>
-      
+      <h3>Already have an Account?</h3>
       <br></br>
       <br></br>
       <button onClick={loginHandle} className="form-submit">

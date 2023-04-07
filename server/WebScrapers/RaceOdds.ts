@@ -30,7 +30,7 @@ export async function scrapeHorseRacingOdds(url: string): Promise<string> {
   return JSON.stringify(mergedData);
 }
 
-interface Race {
+export interface Race {
   time: string;
   venue: string;
 }
@@ -61,6 +61,6 @@ export async function scrapeHorseRaces(url: string): Promise<string> {
   return JSON.stringify(racesArray);
 }
 
-const horseRacesUrl = "https://www.betfair.com/sport/horse-racing";
+
 
 // scrapeHorseRaces(horseRacesUrl).then((data: string) => console.log(data));
