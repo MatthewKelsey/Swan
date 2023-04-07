@@ -1,22 +1,22 @@
-import puppeteer from "puppeteer";
+import puppeteer, { Browser, Page } from "puppeteer";
 
-type HorseObject = {
+interface HorseObject {
   horseName: string;
   odds: string;
-};
+}
 
-async function scrapeHorseRacingOdds(url: string): Promise<string> {
+export async function scrapeHorseRacingOdds(url: string): Promise<string> {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto(url);
 
   await page.waitForSelector(".runner-name-value");
 
-  const horseNames = await page.$$eval(".runner-name-value", (elements) =>
+  const horseNames = await page.$$eval("tbody .runner-name-value", (elements) =>
     elements.map((el) => el.textContent?.trim())
   );
 
-  const horseOdds = await page.$$eval("span.ui-runner-price", (prices) =>
+  const horseOdds = await page.$$eval("tbody span.ui-runner-price", (prices) =>
     prices.map((price) => price.textContent || "")
   );
 
@@ -30,7 +30,37 @@ async function scrapeHorseRacingOdds(url: string): Promise<string> {
   return JSON.stringify(mergedData);
 }
 
-const url =
-  "https://www.betfair.com/sport/horse-racing/meeting?eventId=32241670&raceTime=1680775200000&dayToSearch=20230406&marketId=924.354900826";
+interface Race {
+  time: string;
+  venue: string;
+}
 
-scrapeHorseRacingOdds(url).then((data) => console.log(data));
+export async function scrapeHorseRaces(url: string): Promise<string> {
+  const browser: Browser = await puppeteer.launch({ headless: false });
+  const page: Page = await browser.newPage();
+  await page.goto(url);
+
+  await page.waitForSelector(".slot.race-item");
+
+  const races: string[][] = await page.$$eval(
+    ".slot.race-item",
+    (elements: Element[]) =>
+      elements.map((el) =>
+        el.textContent?.trim().split("\n").map((item) => item.trim()) as string[]
+      ).filter((arr) => arr !== undefined)
+  ) ;
+  
+
+  const racesArray: Race[] = races.map((race) => ({
+    time: race[0],
+    venue: race[1],
+  }));
+
+  await browser.close();
+
+  return JSON.stringify(racesArray);
+}
+
+const horseRacesUrl = "https://www.betfair.com/sport/horse-racing";
+
+// scrapeHorseRaces(horseRacesUrl).then((data: string) => console.log(data));

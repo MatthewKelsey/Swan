@@ -1,10 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from "./databaseConnect"
 
 export interface IUser extends mongoose.Document {
   email: string;
   password: string;
   firstName: string;
   lastName: string;
+  save(): Promise<this>;
 }
 
 const userSchema = new mongoose.Schema({
