@@ -4,6 +4,7 @@ import {
   eventFinder,
   oddsFinder,
 } from "./MongoDB/Controllers/webScraperController";
+import authMiddleware from "./MongoDB/Middleware/auth";
 
 // Initialise router
 
@@ -11,7 +12,7 @@ const router: Router = Router();
 
 // Scraper routes
 
-router.post("/odds", oddsFinder);
+router.post("/odds",  oddsFinder);
 router.get("/events", eventFinder);
 
 // User routes

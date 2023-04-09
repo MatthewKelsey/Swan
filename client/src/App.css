@@ -27,16 +27,19 @@ h1{
    display: flex;
    flex-direction: row;
    justify-content: space-between;
-   padding: 5px;
+
    margin: 5px;
    width: 50%;
-
-   
+   cursor: pointer;
 }
 .race-container{
   display: flex;
   justify-content: center; /* center container horizontally */
   align-items: center; /* center container vertically */
-  min-height: 100vh; /* set a minimum height to make container take up the entire screen */
+  max-height: 80vh; /* set a minimum height to make container take up the entire screen */
   flex-direction: column; /* stack items as a column */
+  overflow: scroll;
+}
+.race-container::-webkit-scrollbar{
+  display: none;
 }

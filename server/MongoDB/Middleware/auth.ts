@@ -1,16 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import User from '../Models/userSchema';
-import UserDocument from "../Models/userSchema";
+import jwt, { Secret } from 'jsonwebtoken';
+import User, { IUser } from '../Models/userSchema';
 
 interface DecodedToken {
-  userId: string;
+  id: string;
   iat: number;
   exp: number;
 }
 
+interface AuthenticatedRequest extends Request {
+  user?: IUser;
+}
+
 const authMiddleware = async (
-  req: Request,
+  req: AuthenticatedRequest,
   res: Response,
   next: NextFunction
 ): Promise<void | Response<any>> => {
@@ -22,9 +25,9 @@ const authMiddleware = async (
     }
 
     const token = authHeader.split(' ')[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET) as unknown as DecodedToken;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as Secret) as DecodedToken;
 
-    const user: UserDocument | null = await User.findOne({ _id: decoded.userId });
+    const user: IUser | null = await User.findOne({ _id: decoded.id });
 
     if (!user) {
       throw new Error();

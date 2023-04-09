@@ -1,11 +1,24 @@
-import React from 'react';
-import { Race } from '../api';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Race, getOdds } from '../api';
+import { useNavigate } from 'react-router-dom';
 
-function IndividualRace(props: Race) {
+interface IndividualRaceProps extends Race{
+    setCurrentRace :Dispatch<SetStateAction<string>>;
+}
+function IndividualRace(props: IndividualRaceProps) {
+const navigate = useNavigate()
+async function handleClick(){
+   
+    props.setCurrentRace(props.eventUrl)
+        navigate('/odds')
+    }
+
+
     return (
-        <div className='race-div'>
-            <h2>{props.venue}</h2>
-            <h2> {props.time}</h2>
+        <div className='race-div' onClick={handleClick}>
+           
+            <h2>{props.event}</h2>
+            
         </div>
     );
 }

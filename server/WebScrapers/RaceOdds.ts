@@ -30,38 +30,40 @@ export async function scrapeHorseRacingOdds(url: string): Promise<string> {
   return JSON.stringify(mergedData);
 }
 
-export interface Race {
-  time: string;
-  venue: string;
-  eventUrl?: string
+export interface RaceInfo {
+  eventUrl: string;
+  event: string;
 }
 
 export async function scrapeHorseRaces(url: string): Promise<string> {
-  const browser: Browser = await puppeteer.launch({ headless: false });
-  const page: Page = await browser.newPage();
-  await page.goto(url);
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto("https://www.betfair.com/sport/horse-racing");
 
-  await page.waitForSelector(".slot.race-item");
+  const links = await page.$$(".races-window .ui-nav.ui-gtm-click");
+  const raceInfoList: RaceInfo[] = [];
 
-  const races: string[][] = await page.$$eval(
-    ".slot.race-item",
-    (elements: Element[]) =>
-      elements.map((el) =>
-        el.textContent?.trim().split("\n").map((item) => item.trim()) as string[]
-      ).filter((arr) => arr !== undefined)
-  ) ;
-  
+  for (const link of links) {
+    const href = await link.evaluate((node) => node.getAttribute("href"));
+    const raceName = await link.evaluate((node) =>
+      node.getAttribute("data-galabel")
+    );
 
-  const racesArray: Race[] = races.map((race) => ({
-    time: race[0],
-    venue: race[1],
-  }));
+    if (
+      raceName &&
+      raceName.match(/\d+/) &&
+      !raceName.includes("view full race card")
+    ) {
+      const infoObj: RaceInfo = {
+        eventUrl: href || "",
+        event: raceName,
+      };
 
+      raceInfoList.push(infoObj);
+    }
+  }
   await browser.close();
-
-  return JSON.stringify(racesArray);
+  return JSON.stringify(raceInfoList);
 }
-
-
-
+// scrapeHorseRaces('https://www.betfair.com/sport/horse-racing')
 // scrapeHorseRaces(horseRacesUrl).then((data: string) => console.log(data));
