@@ -45,7 +45,16 @@ cd /client
 npm start
 ```
 
-
+## Assumptions
+1. The project is limited to the chosen bookmaker and may require additional modifications to work with other bookmakers.
+2. The bookmaker's website has a consistent structure for horse racing event pages, making web scraping reliable.
+3. The bookmaker's website does not have strict anti-bot measures that would prevent Puppeteer requests.
+4. The /events endpoint will be used to fetch a collection of horse racing events, which will enable valid event URLs to be used directly from the bookmaker's website.
+5. The bookmaker's website will consistently format data such as horse names and odds, making them easy to identify within the website's HTML structure.
+6. To access the protected /odds endpoint, users must register and log in to obtain a JWT token.
+7. To request odds via the /odds endpoint, API users must provide a valid event URL.
+8. The authentication and authorization process will use JSON Web Tokens (JWT), which will be stored in the browser's local storage to ensure a seamless login and logout experience for users.
+9. Only users who have successfully logged in will have access to the client-side /home route.
 
 ## Tech Stack
 
