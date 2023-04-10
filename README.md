@@ -60,7 +60,7 @@ npm start
 5. The bookmaker's website will consistently format data such as horse names and odds, making them easy to identify within the website's HTML structure.
 6. To access the protected /odds endpoint, users must register and log in to obtain a JWT token.
 7. To request odds via the /odds endpoint, API users must provide a valid event URL.
-8. The authentication and authorization process will use JSON Web Tokens (JWT), which will be stored as cookies int the browser to ensure a seamless login and logout experience for users.
+8. The authentication and authorization process will use JSON Web Tokens (JWT), which will be stored as a cookie in the browser to ensure a seamless login and logout experience for users.
 
 
 ## Tech Stack
