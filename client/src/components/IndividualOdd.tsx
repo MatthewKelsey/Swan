@@ -4,8 +4,10 @@ import { Odds } from "../api";
 function IndividualOdd(props: Odds) {
   return (
     <div className="race-div">
-      <h3>{props.horseName}</h3>
-      <h3>{props.odds}</h3>
+   <div className="race-info">
+      <h3>{props.horseName}</h3></div>
+      <div className="race-info">
+      <h3>{props.odds}</h3></div>
     </div>
   );
 }
