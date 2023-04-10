@@ -32,7 +32,7 @@ function MainPage(props: MainPageProps) {
 
   return (
     <div>
-      <h2>Home Page</h2>
+      <h2>Upcoming Races</h2>
       {isLoading ? (
         <div>Loading...</div> // Show loading symbol while data is being fetched
       ) : (

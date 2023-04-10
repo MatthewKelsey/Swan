@@ -16,7 +16,8 @@ function App() {
   const [currentEvent, setCurrentEvent] = useState<string>("");
   return (
     <BrowserRouter>
-      <h1>Swan Odds </h1>
+    <div className="title-box">
+      <h1>Swan Odds </h1></div>
       <Routes>
         <Route path="" element={<Register />} />
         <Route path="/login" element={<Login />} />
