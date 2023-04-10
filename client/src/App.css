@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+.root{
+  flex-direction: column;
+}
 h1{
   text-align: center;
   justify-content: center;
@@ -24,7 +26,7 @@ h3{
    background-color: #45a049;
    display: flex;
    flex-direction: row;
-   justify-content:center;
+   justify-content:space-between;
    margin: 5px;
    width: 50%;
    cursor: pointer;
@@ -35,9 +37,8 @@ h3{
 }
 .race-container{
   display: flex;
-  justify-content: center;
   align-items: center; 
- 
+ max-height: 80vh;
   flex-direction: column; 
   overflow: scroll;
 }
@@ -50,9 +51,6 @@ h3{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.register {
   width: 80%;
   margin: 0 auto;
 }
@@ -87,4 +85,8 @@ button {
 
 button:hover {
   background-color: #45a049;
+}
+.race-info{
+  margin-left: 20px;
+  margin-right: 20px;
 }

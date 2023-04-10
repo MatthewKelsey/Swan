@@ -31,8 +31,8 @@ function MainPage(props: MainPageProps) {
   }, []);
 
   return (
-    <div>
-      <h2>Upcoming Races</h2>
+    <div className="main-container">
+      {/* <h2>Upcoming Races</h2> */}
       {isLoading ? (
         <div>Loading...</div> // Show loading symbol while data is being fetched
       ) : (
