@@ -35,7 +35,7 @@ function Login() {
     const { email, password } = state;
     const returningUser = { email: email, password: password };
     const res = await login(returningUser);
-    console.log(res);
+
     if (res.status === 401 || res.status === 400) {
       alert(res.message);
       setState(initialState);

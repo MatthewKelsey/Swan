@@ -16,9 +16,7 @@ export async function eventFinder(req: Request, res: Response) {
 
 export async function oddsFinder(req: Request, res: Response) {
   try {
-    console.log(req.body)
     const odds = await scrapeHorseRacingOdds(req.body.url);
-
     if (odds) {
       res.send(odds);
     }

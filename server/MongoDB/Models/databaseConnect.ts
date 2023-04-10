@@ -1,15 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 dotenv.config();
 
-const password:any= "mongodb+srv://Matthew:Whakedw1@cluster0.men6wel.mongodb.net/?retryWrites=true&w=majority"
+const password: any = process.env.MONGODB_CREDENTIALS;
 
-mongoose.set('strictQuery', true);
-mongoose.set('debug', true)
+mongoose.set("strictQuery", true);
+mongoose.set("debug", true);
 mongoose.connect(password).then(() => {
-  console.log('Connected to database');
+  console.log("Connected to database");
 });
 
 export default mongoose;

@@ -1,47 +1,26 @@
-import { Request, Response, NextFunction } from "express";
-import jwt, { Secret } from "jsonwebtoken";
-import User, { IUser } from "../Models/userSchema";
-require('dotenv').config()
-interface DecodedToken {
-  id: string;
-  iat: number;
-  exp: number;
+import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
+
+const tokenKey: Secret = process.env.JWT_SECRET as Secret;
+
+export interface CustomRequest extends Request {
+  user?: JwtPayload;
 }
 
-interface AuthenticatedRequest extends Request {
-  user?: IUser;
-}
+export function authMiddleware (req: CustomRequest, res: Response, next: NextFunction) {
 
-const authMiddleware = async (
-  req: AuthenticatedRequest,
-  res: Response,
-  next: NextFunction
-): Promise<void | Response<any>> => {
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(403).send('A token is required for authentication');
+  }
   try {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).send("Unauthorized");
-    }
-
-    const token = authHeader.split(" ")[1];
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET as Secret
-    ) as DecodedToken;
-
-    const user: IUser | null = await User.findOne({ _id: decoded.id });
-
-    if (!user) {
-      throw new Error();
-    }
-
-    req.user = user;
-
+ 
+    const decoded: JwtPayload = jwt.verify(token, tokenKey) as JwtPayload;
+  
+    req.user = decoded;
     next();
-  } catch (error) {
-    return res.status(401).send("Unauthorized");
+  } catch (err) {
+    return res.status(401).send('Invalid Token');
   }
 };
-
-export default authMiddleware;

@@ -1,4 +1,4 @@
-import mongoose from "./databaseConnect"
+import mongoose from "./databaseConnect";
 
 export interface IUser extends mongoose.Document {
   email: string;

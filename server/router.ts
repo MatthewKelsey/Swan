@@ -4,7 +4,7 @@ import {
   eventFinder,
   oddsFinder,
 } from "./MongoDB/Controllers/webScraperController";
-import authMiddleware from "./MongoDB/Middleware/auth";
+import { authMiddleware } from "./MongoDB/Middleware/auth";
 
 // Initialise router
 

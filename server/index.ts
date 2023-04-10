@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import router from "./router";
-
+import cookieParser from "cookie-parser";
 const app = express();
 const port = process.env.PORT || 4000;
 
@@ -12,7 +12,8 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(router)
+app.use(cookieParser());
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Server is listening on ${port}`);

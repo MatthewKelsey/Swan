@@ -19,12 +19,11 @@ function MainPage(props: MainPageProps) {
         if (Array.isArray(data)) {
           setUpcomingRaces(data);
           setIsLoading(false); // Set loading to false when data is loaded
-          console.log(data); // Make sure data is of type Race[]
         }
       })
       .catch((error) => {
-        console.log(error);
-        if (error.response && error.response.status === 401) {
+       ;
+        if (error.response && error.response.status === 401 ) {
           alert("Unauthorized. Please login.");
         }
         setIsLoading(false); // Set loading to false if there's an error

@@ -21,7 +21,6 @@ export interface Race {
 
 export async function login(user: Partial<User>): Promise<any> {
   try {
-    console.log("hello");
     const response = await fetch(`${root}login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -29,6 +28,13 @@ export async function login(user: Partial<User>): Promise<any> {
       credentials: "include",
     });
     const loggedUser = await response.json();
+
+    if (response.ok) {
+      // If the response is ok, extract the token from the response data
+      const { token } = loggedUser;
+      // Store the token in an HttpOnly cookie named "auth"
+      document.cookie = `auth=${token}; path=/; HttpOnly`;
+    }
 
     return loggedUser;
   } catch (error) {
@@ -38,7 +44,6 @@ export async function login(user: Partial<User>): Promise<any> {
 
 export async function register(user: User): Promise<any> {
   try {
-    console.log("in register");
     const response = await fetch(`${root}register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -46,6 +51,13 @@ export async function register(user: User): Promise<any> {
       credentials: "include",
     });
     const data = await response.json();
+
+    if (response.ok) {
+      // If the response is ok, extract the token from the response data
+      const { token } = data;
+      // Store the token in an HttpOnly cookie named "auth"
+      document.cookie = `auth=${token}; path=/; HttpOnly`;
+    }
 
     return data;
   } catch (error) {
@@ -75,9 +87,7 @@ export async function getRaces(): Promise<Race[] | undefined> {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
-
     const data = await response.json();
-
     return data;
   } catch (error) {
     console.log(error);
@@ -85,7 +95,6 @@ export async function getRaces(): Promise<Race[] | undefined> {
 }
 
 export async function getOdds(url: string): Promise<Odds[] | undefined> {
-  console.log(url);
   try {
     const response = await fetch(`${root}odds`, {
       method: "POST",

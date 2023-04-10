@@ -16,7 +16,7 @@ function IndividualRace(props: IndividualRaceProps) {
 
   return (
     <div className="race-div" onClick={handleClick}>
-      <h2>{props.event}</h2>
+      <h3>{props.event}</h3>
     </div>
   );
 }

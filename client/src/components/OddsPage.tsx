@@ -28,7 +28,7 @@ function OddsPage(props: OddsPageProps) {
 
   return (
     <div>
-      <h1> {props.currentEvent}</h1>
+      <h2> {props.currentEvent}</h2>
       <div className="race-container">
         {horseOdds.map((horse) => {
           return (
