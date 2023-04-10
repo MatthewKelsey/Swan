@@ -6,11 +6,12 @@ Swan is an app designed to show you upcoming horseraces and check the odds of a 
 
 ## Screenshots
 
-<p align="center">
+
   <img src="/images/image1.png" />
- 
   <img src="./images/image2.png" />
-</p>
+  <img src="./images/image3.png" />
+  <img src="./images/image4.png" />
+
 
 
 
