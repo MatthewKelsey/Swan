@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api";
-import {User} from './Register'
-
+import { User } from "./Register";
 
 interface State {
   email: string;
@@ -38,10 +37,9 @@ function Login() {
     const res = await login(returningUser);
     console.log(res);
     if (res.status === 401 || res.status === 400) {
-      alert(`Error`);
+      alert(res.message);
       setState(initialState);
     } else {
-     ;
       navigate("/home");
     }
   };
@@ -53,7 +51,7 @@ function Login() {
   return (
     <section className="register">
       <br />
-      <img className="logoting" src="../logoting.png" alt="logo" />
+    
       <h2>Login</h2>
       <form className="form" onSubmit={handleSubmit}>
         <input
@@ -66,7 +64,7 @@ function Login() {
         <br />
         <input
           type="password"
-          placeholder="supersecretthingy"
+          placeholder="Password"
           name="password"
           value={state.password}
           onChange={handleChange}

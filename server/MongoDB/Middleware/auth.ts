@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt, { Secret } from 'jsonwebtoken';
-import User, { IUser } from '../Models/userSchema';
-
+import { Request, Response, NextFunction } from "express";
+import jwt, { Secret } from "jsonwebtoken";
+import User, { IUser } from "../Models/userSchema";
+require('dotenv').config()
 interface DecodedToken {
   id: string;
   iat: number;
@@ -20,12 +20,15 @@ const authMiddleware = async (
   try {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).send('Unauthorized');
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).send("Unauthorized");
     }
 
-    const token = authHeader.split(' ')[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as Secret) as DecodedToken;
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET as Secret
+    ) as DecodedToken;
 
     const user: IUser | null = await User.findOne({ _id: decoded.id });
 
@@ -37,7 +40,7 @@ const authMiddleware = async (
 
     next();
   } catch (error) {
-    return res.status(401).send('Unauthorized');
+    return res.status(401).send("Unauthorized");
   }
 };
 

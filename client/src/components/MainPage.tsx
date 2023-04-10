@@ -2,12 +2,14 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getRaces, Race } from "../api";
 import IndividualRace from "./IndividualRace";
 
-interface MainPageProps{
-currentRace : string
-setCurrentRace: Dispatch<SetStateAction<string>>;
+interface MainPageProps {
+  currentRace: string;
+  setCurrentRace: Dispatch<SetStateAction<string>>;
+  currentEvent: string;
+  setCurrentEvent: Dispatch<SetStateAction<string>>;
 }
 
-function MainPage(props:MainPageProps) {
+function MainPage(props: MainPageProps) {
   const [upcomingRaces, setUpcomingRaces] = useState<Race[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -22,6 +24,9 @@ function MainPage(props:MainPageProps) {
       })
       .catch((error) => {
         console.log(error);
+        if (error.response && error.response.status === 401) {
+          alert("Unauthorized. Please login.");
+        }
         setIsLoading(false); // Set loading to false if there's an error
       });
   }, []);
@@ -34,7 +39,12 @@ function MainPage(props:MainPageProps) {
       ) : (
         <div className="race-container">
           {upcomingRaces.map((race) => (
-            <IndividualRace event={race.event} eventUrl={race.eventUrl} setCurrentRace={props.setCurrentRace} />
+            <IndividualRace
+              event={race.event}
+              eventUrl={race.eventUrl}
+              setCurrentRace={props.setCurrentRace}
+              setCurrentEvent={props.setCurrentEvent}
+            />
           ))}
         </div>
       )}

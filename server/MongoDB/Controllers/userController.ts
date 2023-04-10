@@ -2,14 +2,16 @@ import { Request, Response } from "express";
 import User, { IUser } from "../Models/userSchema";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+require('dotenv').config()
 
 const saltRounds = 10;
-const secret = "your_secret_key"; // Change this to a secure secret key
+const secret:string = process.env.JWT_SECRET ||'';
 
 export const registerUser = async (
   req: Request,
   res: Response
 ): Promise<void> => {
+  console.log(secret)
   const { email, password, ...rest } = req.body;
   try {
     const user: IUser | null = await User.findOne({ email });
@@ -44,7 +46,6 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       if (isValidPassword) {
         const token = jwt.sign({ id: user._id }, secret); // Generate a JWT
         res.status(200).send({ user, token }); // Send the JWT in the response
-        return;
       }
     }
     res

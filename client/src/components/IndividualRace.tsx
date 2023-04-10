@@ -1,27 +1,24 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Race, getOdds } from '../api';
-import { useNavigate } from 'react-router-dom';
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { Race, getOdds } from "../api";
+import { useNavigate } from "react-router-dom";
 
-interface IndividualRaceProps extends Race{
-    setCurrentRace :Dispatch<SetStateAction<string>>;
+interface IndividualRaceProps extends Race {
+  setCurrentRace: Dispatch<SetStateAction<any>>;
+  setCurrentEvent: Dispatch<SetStateAction<any>>;
 }
 function IndividualRace(props: IndividualRaceProps) {
-const navigate = useNavigate()
-async function handleClick(){
-   
-    props.setCurrentRace(props.eventUrl)
-        navigate('/odds')
-    }
+  const navigate = useNavigate();
+  async function handleClick() {
+    props.setCurrentEvent(props.event);
+    props.setCurrentRace(props.eventUrl);
+    navigate("/odds");
+  }
 
-
-    return (
-        <div className='race-div' onClick={handleClick}>
-           
-            <h2>{props.event}</h2>
-            
-        </div>
-    );
+  return (
+    <div className="race-div" onClick={handleClick}>
+      <h2>{props.event}</h2>
+    </div>
+  );
 }
-
 
 export default IndividualRace;

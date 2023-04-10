@@ -85,13 +85,13 @@ export async function getRaces(): Promise<Race[] | undefined> {
 }
 
 export async function getOdds(url: string): Promise<Odds[] | undefined> {
-  console.log(url)
+  console.log(url);
   try {
     const response = await fetch(`${root}odds`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({url:url})
+      body: JSON.stringify({ url: url }),
     });
 
     const data = await response.json();
