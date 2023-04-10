@@ -18,15 +18,14 @@ function MainPage(props: MainPageProps) {
       .then((data) => {
         if (Array.isArray(data)) {
           setUpcomingRaces(data);
-          setIsLoading(false); // Set loading to false when data is loaded
+          setIsLoading(false);
         }
       })
       .catch((error) => {
-       
-        if (error.response && error.status === 403 ) {
+        if (error.response && error.status === 403) {
           alert("Unauthorized. Please login.");
         }
-        setIsLoading(false); // Set loading to false if there's an error
+        setIsLoading(false);
       });
   }, []);
 

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api";
-import { User } from "./Register";
-
 interface State {
   email: string;
   password: string;
@@ -51,7 +49,7 @@ function Login() {
   return (
     <section className="register">
       <br />
-    
+
       <h2>Login</h2>
       <form className="form" onSubmit={handleSubmit}>
         <input
