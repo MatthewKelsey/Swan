@@ -25,9 +25,10 @@ Swan is an app designed to show you upcoming horseraces and check the odds of a 
 1. Clone the repo
 
 ```
-git clone https://github.com/MatthewKelsey/Swan
-cd Swan
+git clone git@github.com:MatthewKelsey/Swan.git
+
 ```
+
 
 2. Install dependencies in both /client and /server folders
 
