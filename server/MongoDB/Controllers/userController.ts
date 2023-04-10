@@ -67,3 +67,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     console.log(error);
   }
 };
+
+export const logout = async (req: Request, res: Response): Promise<void> => {
+  try {
+    res.clearCookie("jwt"); // Delete the client-side cookie
+    res.status(200).send({ message: "Logged out successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: "Could not log out user" });
+  }
+};

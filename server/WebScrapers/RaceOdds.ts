@@ -6,7 +6,7 @@ interface HorseObject {
 }
 
 export async function scrapeHorseRacingOdds(url: string): Promise<string> {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto(url);
 
