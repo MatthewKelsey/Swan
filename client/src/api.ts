@@ -73,8 +73,8 @@ export async function logout(): Promise<any> {
       // body: JSON.stringify(),
       credentials: "include",
     });
-    const data = await response.json;
-    return data;
+    const data = await response.json();
+
   } catch (error) {
     console.log(error);
   }
@@ -90,6 +90,7 @@ export async function getRaces(): Promise<Race[] | undefined> {
     const data = await response.json();
     return data;
   } catch (error) {
+
     console.log(error);
   }
 }

@@ -5,7 +5,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import MainPage from "./components/MainPage";
 import OddsPage from "./components/OddsPage";
-
+import Navbar from "./components/Navbar";
 interface currentRace {
   url: string;
   name: string;
@@ -16,8 +16,7 @@ function App() {
   const [currentEvent, setCurrentEvent] = useState<string>("");
   return (
     <BrowserRouter>
-    <div className="title-box">
-      <h1>Swan Odds </h1></div>
+    <Navbar />
       <Routes>
         <Route path="" element={<Register />} />
         <Route path="/login" element={<Login />} />

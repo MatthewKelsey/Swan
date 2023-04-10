@@ -22,8 +22,8 @@ function MainPage(props: MainPageProps) {
         }
       })
       .catch((error) => {
-       ;
-        if (error.response && error.response.status === 401 ) {
+       
+        if (error.response && error.status === 403 ) {
           alert("Unauthorized. Please login.");
         }
         setIsLoading(false); // Set loading to false if there's an error
@@ -32,7 +32,7 @@ function MainPage(props: MainPageProps) {
 
   return (
     <div className="main-container">
-      {/* <h2>Upcoming Races</h2> */}
+      <h2>Upcoming Races</h2>
       {isLoading ? (
         <div>Loading...</div> // Show loading symbol while data is being fetched
       ) : (

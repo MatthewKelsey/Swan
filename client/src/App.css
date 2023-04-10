@@ -18,9 +18,20 @@ font-size: 30px;
 h3{
   font-size: 25px;
 }
-.title-box{
+.nav-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #45a049;
   color: White;
+  height: fit-content;
+
+}
+.nav-menu{
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+
 }
 .race-div {
    background-color: #45a049;
@@ -82,7 +93,17 @@ button {
   cursor: pointer;
   font-size: 16px;
 }
-
+.horse-div{
+  background-color: #45a049;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  margin: 5px;
+  width: 50%;
+  color: white;
+  height: fit-content;
+  border-radius: 10px;
+}
 button:hover {
   background-color: #45a049;
 }

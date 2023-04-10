@@ -12,7 +12,7 @@ export function authMiddleware (req: CustomRequest, res: Response, next: NextFun
   const token = req.cookies.jwt;
 
   if (!token) {
-    return res.status(403).send('A token is required for authentication');
+    return res.status(403).send({error:'Unauthorised', message:'Please sign in to continue'});
   }
   try {
  
