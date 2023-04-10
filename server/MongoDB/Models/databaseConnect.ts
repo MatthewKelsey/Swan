@@ -7,7 +7,6 @@ dotenv.config();
 const password: any = process.env.MONGODB_CREDENTIALS;
 
 mongoose.set("strictQuery", true);
-mongoose.set("debug", true);
 mongoose.connect(password).then(() => {
   console.log("Connected to database");
 });

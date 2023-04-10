@@ -28,14 +28,10 @@ export async function login(user: Partial<User>): Promise<any> {
       credentials: "include",
     });
     const loggedUser = await response.json();
-
     if (response.ok) {
-      // If the response is ok, extract the token from the response data
       const { token } = loggedUser;
-      // Store the token in an HttpOnly cookie named "auth"
       document.cookie = `auth=${token}; path=/; HttpOnly`;
     }
-
     return loggedUser;
   } catch (error) {
     console.log(error);
@@ -53,9 +49,7 @@ export async function register(user: User): Promise<any> {
     const data = await response.json();
 
     if (response.ok) {
-      // If the response is ok, extract the token from the response data
       const { token } = data;
-      // Store the token in an HttpOnly cookie named "auth"
       document.cookie = `auth=${token}; path=/; HttpOnly`;
     }
 
@@ -74,23 +68,20 @@ export async function logout(): Promise<any> {
       credentials: "include",
     });
     const data = await response.json();
-
   } catch (error) {
     console.log(error);
   }
 }
-
 export async function getRaces(): Promise<Race[] | undefined> {
   try {
     const response = await fetch(`${root}events`, {
-      method: "Get",
+      method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
     const data = await response.json();
     return data;
   } catch (error) {
-
     console.log(error);
   }
 }

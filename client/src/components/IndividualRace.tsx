@@ -7,8 +7,8 @@ interface IndividualRaceProps extends Race {
   setCurrentEvent: Dispatch<SetStateAction<any>>;
 }
 function IndividualRace(props: IndividualRaceProps) {
-  const venue:string = props.event.split(' ')[1]
-  const time: string = props.event.split(' ')[0]
+  const venue: string = props.event.split(" ")[1];
+  const time: string = props.event.split(" ")[0];
   const navigate = useNavigate();
   async function handleClick() {
     props.setCurrentEvent(props.event);
@@ -19,9 +19,11 @@ function IndividualRace(props: IndividualRaceProps) {
   return (
     <div className="race-div" onClick={handleClick}>
       <div className="race-info">
-      <h3>{venue}</h3></div>
+        <h3>{venue}</h3>
+      </div>
       <div className="race-info">
-      <h3>{time}</h3></div>
+        <h3>{time}</h3>
+      </div>
     </div>
   );
 }

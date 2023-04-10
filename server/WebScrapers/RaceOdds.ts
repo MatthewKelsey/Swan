@@ -6,7 +6,7 @@ interface HorseObject {
 }
 
 export async function scrapeHorseRacingOdds(url: string): Promise<string> {
-  const browser = await puppeteer.launch({ headless: true});
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(url);
 
@@ -65,5 +65,4 @@ export async function scrapeHorseRaces(url: string): Promise<string> {
   await browser.close();
   return JSON.stringify(raceInfoList);
 }
-// scrapeHorseRaces('https://www.betfair.com/sport/horse-racing')
-// scrapeHorseRaces(horseRacesUrl).then((data: string) => console.log(data));
+

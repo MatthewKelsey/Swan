@@ -25,14 +25,14 @@ export const registerUser = async (
       ...rest,
     });
     const savedUser: IUser = await newUser.save();
-    const token = jwt.sign({ id: savedUser._id }, secret); 
+    const token = jwt.sign({ id: savedUser._id }, secret);
     res.cookie("jwt", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 3600 * 1000, 
+      maxAge: 3600 * 1000,
     });
-    res.status(201).send({ user: savedUser }); 
+    res.status(201).send({ user: savedUser });
   } catch (error) {
     console.log(error);
     res.status(400).send({ error: "Could not create user" });
@@ -49,14 +49,14 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         user.password
       );
       if (isValidPassword) {
-        const token = jwt.sign({ id: user._id }, secret); 
+        const token = jwt.sign({ id: user._id }, secret);
         res.cookie("jwt", token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
-          maxAge: 3600 * 1000, 
+          maxAge: 3600 * 1000,
         });
-        res.status(200).send({ user }); 
+        res.status(200).send({ user });
         return;
       }
     }
