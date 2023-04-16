@@ -50,9 +50,9 @@ touch .env
 
 4. If running mongoDB locally open a version. 
 
-...
+```
 sudo mongod
-...
+```
 
 5. Start development server
 ```
