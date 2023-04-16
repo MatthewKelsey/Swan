@@ -16,7 +16,7 @@ const initialState: User = {
   lastName: "",
 };
 
-export default function Register(): JSX.Element {
+function Register(): JSX.Element {
   const navigate = useNavigate();
   const [state, setState] = useState<User>(initialState);
 
@@ -101,3 +101,5 @@ export default function Register(): JSX.Element {
     </section>
   );
 }
+
+export default Register;

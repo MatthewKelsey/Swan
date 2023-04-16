@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Odds, getOdds } from "../api";
 import IndividualOdd from "./IndividualOdd";
-
+import { useNavigate } from "react-router-dom";
 interface OddsPageProps {
   currentRace: string;
   currentEvent: string;
 }
 
 function OddsPage(props: OddsPageProps) {
+  const navigate = useNavigate();
+
   const [horseOdds, setHorseOdds] = useState<Odds[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    if (props.currentRace === "") {
+      navigate("/home");
+    }
     const fetchOdds = async () => {
       const odds = await getOdds(`https://www.betfair.com${props.currentRace}`);
       if (odds) {

@@ -14,9 +14,11 @@ function MainPage(props: MainPageProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    let isMounted = true;
+
     getRaces()
       .then((data) => {
-        if (Array.isArray(data)) {
+        if (isMounted && Array.isArray(data)) {
           setUpcomingRaces(data);
           setIsLoading(false);
         }
@@ -27,17 +29,22 @@ function MainPage(props: MainPageProps) {
         }
         setIsLoading(false);
       });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
     <div className="main-container">
       <h2>Upcoming Races</h2>
       {isLoading ? (
-        <div>Loading...</div> // Show loading symbol while data is being fetched
+        <div>Loading...</div>
       ) : (
         <div className="race-container">
           {upcomingRaces.map((race) => (
             <IndividualRace
+              key={race.eventUrl}
               event={race.event}
               eventUrl={race.eventUrl}
               setCurrentRace={props.setCurrentRace}
