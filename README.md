@@ -41,13 +41,20 @@ cd server
 npm install
 ```
 
-3. Start development server
+3. Create a .env file inside server folder and update MONGODB_CREDENTIALS, JWT_SECRET and PORT. Follow the .env.sample as a guide.
+```
+cd server
+touch .env
+```
+<img src="./images/image5.png" alt="Screenshot 5">
+
+4. Start development server
 ```
 cd /server
 npm start
 ```
 
-4. Start the front end app
+5. Start the front end app
 ```
 cd /client
 npm start
