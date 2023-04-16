@@ -67,7 +67,7 @@ export async function logout(): Promise<any> {
       // body: JSON.stringify(),
       credentials: "include",
     });
-    const data = await response.json();
+    await response.json();
   } catch (error) {
     console.log(error);
   }

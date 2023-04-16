@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { Race, getOdds } from "../api";
+import React, { Dispatch, SetStateAction } from "react";
+import { Race } from "../api";
 import { useNavigate } from "react-router-dom";
 
 interface IndividualRaceProps extends Race {
