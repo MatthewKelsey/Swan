@@ -6,10 +6,7 @@ import Login from "./components/Login";
 import MainPage from "./components/MainPage";
 import OddsPage from "./components/OddsPage";
 import Navbar from "./components/Navbar";
-interface currentRace {
-  url: string;
-  name: string;
-}
+
 
 function App() {
   const [currentRace, setCurrentRace] = useState<string>("");
