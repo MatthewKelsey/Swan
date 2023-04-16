@@ -25,7 +25,7 @@ function OddsPage(props: OddsPageProps) {
       }
     };
     fetchOdds();
-  }, [props.currentRace]);
+  }, [props.currentRace, navigate]);
 
   if (isLoading) {
     return <div>Loading...</div>;
