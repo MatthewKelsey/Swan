@@ -48,19 +48,19 @@ touch .env
 ```
 <img src="./images/image5.png" alt="Screenshot 5">
 
-4. If running mongoDB locally open a version. 
+4. If running mongoDB locally run MongoDB with the following command in a new terminal window. 
 
 ```
 sudo mongod
 ```
 
-5. Start development server
+5. Open a new terminal window and start the development server.
 ```
 cd /server
 npm start
 ```
 
-6. Start the front end app
+6. Open another teminal window and start the front end app.
 ```
 cd /client
 npm start
