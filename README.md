@@ -4,6 +4,13 @@
 
 Swan is an app designed to show you upcoming horseraces and check the odds of a given race. As it hasn't been deployed yet you can run it by following the steps in this README file.
 
+## Prerequesites
+
+1. In order to run Swan you will need to have access to an instance of MongoDB. You can either install MongoDB locally or create a free online account with MongoDB Atlas. 
+
+[Installation](https://www.mongodb.com/docs/manual/installation/)
+[Create a MongoDB account](https://www.mongodb.com/atlas/database)
+
 ## Screenshots
 
 
