@@ -46,6 +46,8 @@ touch .env
   
   * [Installation](https://www.mongodb.com/docs/manual/administration/install-community/)
   
+<h2> MacOS and Linux users.</h2>
+  
 2. Once installed MacOS and Linux users can run an instance of MongoDB by running the following command in a new terminal window.
   
   ```
@@ -66,5 +68,34 @@ touch .env
   ```
   npm start
   ```
+  
+  <h2>Windows users. </h2>
+  
+ 2. Once installed Windows users can run an instance of MongoDB by navigating to MongoDB by running this command in the command prompt windows.
+ 
+```
+cd C:\Program Files\MongoDB\Server\6.0\bin
+```
 
+3. Then starting an instance of MongoDB running this command in the command prompt window.
 
+```
+mongod
+```
+4. Create a .env file inside the server folder.
+ 
+```
+touch .env
+```
+5. The default location for your local database is mongodb://127.0.0.1:27017/. Paste this connection string as your MONGODB_CREDENTIALS variable.
+
+```
+mongodb://127.0.0.1:27017/
+```
+  
+<img src=".././images/image5.png" alt="Screenshot 5">
+  
+6. Save your changes and run the server with npm start from inside the server directory. 
+  ```
+  npm start
+  ```
