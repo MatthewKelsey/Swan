@@ -11,7 +11,7 @@ Follow the appropriate instructions depending on whether you are using MongoDB A
 
 2. Once you have created your account click on the connect button.
 
-<img src=".././images/image6.png" alt="Screenshot 6">
+<img src=".././images/image5.png" alt="Screenshot 6">
 3. Then click the drivers option. 
 <img src=".././images/image7.png" alt="Screenshot 7">
 
