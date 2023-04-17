@@ -8,6 +8,7 @@ Follow the appropriate instructions depending on whether you are using MongoDB A
 
 1. Create a free account by following the folloing link,
 
+* [MongoDB Atlas](https://www.mongodb.com/atlas/database)
 
 2. Once you have created your account click on the connect button.
 
