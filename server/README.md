@@ -15,11 +15,21 @@ Follow the appropriate instructions depending on whether you are using MongoDB A
 3. Then click the drivers option. 
 <img src=".././images/image7.png" alt="Screenshot 7">
 
-4. Copy the URI. 
+4. Copy the connection string. 
 
 <img src=".././images/image8.png" alt="Screenshot 8">
-5. Paste the URI into your .env file as the MONGODB_CREDENTIALS variable. 
+5. Create a .env file inside the server folder.
+```
+touch .env
+```
 
-6. Change '<password>' to the the password you used for your MongoDB Atlas account. 
+6. Paste the connection into your .env file as the MONGODB_CREDENTIALS variable. 
+
+<img src=".././images/image4.png" alt="Screenshot 4">
+
+7. Change '<password>' to the the password you used for your MongoDB Atlas account. 
   
-7. Save your changes and run the server with npm start from inside the server directory. 
+8. Save your changes and run the server with npm start from inside the server directory. 
+  ```
+  npm start
+  ```
