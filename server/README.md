@@ -19,7 +19,8 @@ Follow the appropriate instructions depending on whether you are using MongoDB A
 4. Copy the connection string. 
 
 <img src=".././images/image8.png" alt="Screenshot 8">
-5. Create a .env file inside the server folder.
+5. Create a .env file inside the server folder
+ 
 ```
 touch .env
 ```
@@ -39,3 +40,31 @@ touch .env
 
 ## MongoDB Compass Users (local)
   
+ 
+  
+1. Install MongoDB by following the manufacturer's instructions for your operating system. 
+  
+  * [Installation](https://www.mongodb.com/docs/manual/administration/install-community/)
+  
+2. Once installed MacOS and Linux users can run an instance of MongoDB by running the following command in a new terminal window.
+  
+  ```
+  sudo mongod
+  ```
+  
+3. Create a .env file inside the server folder.
+ 
+```
+touch .env
+```
+4. The default location for your local database is mongodb://localhost:27017/. Paste this connection string as your MONGODB_CREDENTIALS variable.
+  
+  
+<img src=".././images/image5.png" alt="Screenshot 5">
+  
+5. Save your changes and run the server with npm start from inside the server directory. 
+  ```
+  npm start
+  ```
+
+
