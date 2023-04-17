@@ -11,14 +11,14 @@ Follow the appropriate instructions depending on whether you are using MongoDB A
 
 2. Once you have created your account click on the connect button.
 
-
+<img src="./images/image6.png" alt="Screenshot 6">
 3. Then click the drivers option. 
-
+<img src="./images/image7.png" alt="Screenshot 7">
 
 4. Copy the URI. 
 
-
-5 Paste the URI into your .env file as the MONGODB_CREDENTIALS variable. 
+<img src="./images/image7.png" alt="Screenshot 8">
+5. Paste the URI into your .env file as the MONGODB_CREDENTIALS variable. 
 
 6. Change '<password>' to the the password you used for your MongoDB Atlas account. 
   
