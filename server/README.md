@@ -26,7 +26,7 @@ touch .env
 
 6. Paste the connection into your .env file as the MONGODB_CREDENTIALS variable. 
 
-<img src=".././images/image4.png" alt="Screenshot 4">
+<img src=".././images/image5.png" alt="Screenshot 5">
 
 7. Change '<password>' to the the password you used for your MongoDB Atlas account. 
   
