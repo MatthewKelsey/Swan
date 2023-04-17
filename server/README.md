@@ -34,3 +34,8 @@ touch .env
   ```
   npm start
   ```
+
+
+
+## MongoDB Compass Users (local)
+  
