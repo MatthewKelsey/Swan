@@ -62,9 +62,7 @@ For Linux and Mac users.
 ```
 sudo mongod
 ```
-For Windows Users
-```
-```
+
 
 5. Open a new terminal window and start the development server.
 ```
