@@ -87,7 +87,7 @@ mongod
 ```
 touch .env
 ```
-5. The default location for your local database is mongodb://127.0.0.1:27017/. Paste this connection string as your MONGODB_CREDENTIALS variable.
+5. The default location for your local database is mongodb://127.0.0.1:27017/. WIndows users are recommended to use mongodb://127.0.0.1:27017/ instead of mongodb://localhost:27017/. Paste this connection string as your MONGODB_CREDENTIALS variable.
 
 ```
 mongodb://127.0.0.1:27017/
