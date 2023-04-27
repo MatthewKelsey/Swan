@@ -7,7 +7,8 @@ const port = process.env.PORT || 3100;
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000",
+    "https://swan-bets.netlify.app"],
     credentials: true,
   })
 );

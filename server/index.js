@@ -10,7 +10,8 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3100;
 app.use((0, cors_1.default)({
-    origin: "https://swan-bets.netlify.app",
+    origin: ["http://localhost:3000",
+        "https://swan-bets.netlify.app"],
     credentials: true,
 }));
 app.use(express_1.default.json());
