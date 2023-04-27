@@ -30,7 +30,7 @@ export async function login(user: Partial<User>): Promise<any> {
     const loggedUser = await response.json();
     if (response.ok) {
       const { token } = loggedUser;
-      document.cookie = `auth=${token}; domain=swan-server.fly.dev path=/; HttpOnly`;
+      document.cookie = `jwt=${token}; domain=swan-server.fly.dev path=/; HttpOnly`;
     }
     return loggedUser;
   } catch (error) {
