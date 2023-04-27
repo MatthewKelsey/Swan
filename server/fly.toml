@@ -13,7 +13,7 @@ processes = []
 
 [env]
 MONGODB_CREDENTIALS="mongodb+srv://Matthew:Whakedw1@cluster0.men6wel.mongodb.net/?retryWrites=true&w=majority"
-
+NODE_ENV="production"
 
 JWT_SECRET="<your_secret_key_here>"
 

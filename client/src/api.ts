@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
-// const root = "http://localhost:8080/";
-const root = "https://swan-server.fly.dev/";
+const root = "http://localhost:8080/";
+// const root = "https://swan-server.fly.dev/";
 interface User {
   email: string;
   password: string;
@@ -30,7 +30,7 @@ export async function login(user: Partial<User>): Promise<any> {
     const loggedUser = await response.json();
     if (response.ok) {
       const { token } = loggedUser;
-      document.cookie = `auth=${token}; path=/; HttpOnly`;
+      document.cookie = `auth=${token}; domain=swan-server.fly.dev path=/; HttpOnly`;
     }
     return loggedUser;
   } catch (error) {

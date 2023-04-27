@@ -52,7 +52,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         const token = jwt.sign({ id: user._id }, secret);
         res.cookie("jwt", token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
+          // secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
           maxAge: 3600 * 1000,
         });
