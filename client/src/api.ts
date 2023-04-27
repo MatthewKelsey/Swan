@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
-const root = "http://localhost:8080/";
-// const root = "https://swan-server.fly.dev/";
+// const root = "http://localhost:8080/";
+const root = "https://swan-server.fly.dev/";
 interface User {
   email: string;
   password: string;
