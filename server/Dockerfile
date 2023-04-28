@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y wget gnupg2 && \
     rm -rf /var/lib/apt/lists/*
 
 # Set the Puppeteer executable path
-ENV 
+
 # Copy application code
 COPY --link . .
 
