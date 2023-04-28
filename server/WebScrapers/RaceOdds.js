@@ -33,7 +33,7 @@ function scrapeHorseRacingOdds(url) {
 exports.scrapeHorseRacingOdds = scrapeHorseRacingOdds;
 function scrapeHorseRaces(url) {
     return __awaiter(this, void 0, void 0, function* () {
-        const browser = yield puppeteer_1.default.launch();
+        const browser = yield puppeteer_1.default.launch({ headless: true });
         const page = yield browser.newPage();
         yield page.goto("https://www.betfair.com/sport/horse-racing");
         const links = yield page.$$(".races-window .ui-nav.ui-gtm-click");
