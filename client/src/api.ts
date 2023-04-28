@@ -32,7 +32,7 @@ export async function login(user: Partial<User>): Promise<any> {
     if (response.ok) {
       const { token } = loggedUser;
       console.log(token)
-      document.cookie = `jwt=${token}; domain=swan-server.fly.dev path=/; HttpOnly`;
+      document.cookie = `jwt=${token}; domain=swan-bets-server.herokuapp.com path=/; HttpOnly`;
     }
     return loggedUser;
   } catch (error) {
