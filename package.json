@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "engines": {
+    "node": "16.18.0"
+  },
   "scripts": {
     "test": "jest",
     "start": "node index.js"
