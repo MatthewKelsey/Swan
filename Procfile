@@ -1,1 +1,1 @@
-web : npm install puppeteer --unsafe-perm=true --allow-root && cd server && node ./server/index.js
+web : npm install puppeteer --unsafe-perm=true --allow-root && cd server && node index.js
