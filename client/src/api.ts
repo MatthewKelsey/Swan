@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 
-const root = "http://localhost:8080/";
+// const root = "http://localhost:8080/";
 // const root = "https://swan-server.fly.dev/";
-// const root = "https://swan-bets-server.herokuapp.com/"node
+const root = "https://swan-bets-server.herokuapp.com/"
 interface User {
   email: string;
   password: string;
