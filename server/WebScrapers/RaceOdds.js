@@ -16,7 +16,7 @@ exports.scrapeHorseRaces = exports.scrapeHorseRacingOdds = void 0;
 const puppeteer_1 = __importDefault(require("puppeteer"));
 function scrapeHorseRacingOdds(url) {
     return __awaiter(this, void 0, void 0, function* () {
-        const browser = yield puppeteer_1.default.launch({ headless: true });
+        const browser = yield puppeteer_1.default.launch({ headless: true, executablePath: process.env.PUPPETEER_EXECUTABLE_PATH });
         const page = yield browser.newPage();
         yield page.goto(url);
         yield page.waitForSelector(".runner-name-value");
