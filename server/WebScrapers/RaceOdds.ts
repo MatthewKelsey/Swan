@@ -6,7 +6,11 @@ interface HorseObject {
 }
 
 export async function scrapeHorseRacingOdds(url: string): Promise<string> {
-  const browser = await puppeteer.launch({headless:true,args:['~~no~sandbox']});
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox']
+  });
+  
   const page = await browser.newPage();
   await page.goto(url);
 
@@ -36,7 +40,11 @@ export interface RaceInfo {
 }
 
 export async function scrapeHorseRaces(url: string): Promise<string> {
-  const browser = await puppeteer.launch({headless:true,args:['~~no~sandbox']});
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox']
+  });
+  
   const page = await browser.newPage();
   await page.goto("https://www.betfair.com/sport/horse-racing");
 
