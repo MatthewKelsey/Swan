@@ -1,1 +1,1 @@
-web : node node_modules/puppeteer/install.js && cd server && node index.js
+web : cd server && node index.js

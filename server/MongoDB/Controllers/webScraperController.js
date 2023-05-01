@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.oddsFinder = exports.eventFinder = void 0;
-const RaceOdds_1 = require("../../WebScrapers/RaceOdds");
+const RaceOdds_1 = require("../../../WebScrapers/RaceOdds");
 function eventFinder(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import {
   scrapeHorseRacingOdds,
   scrapeHorseRaces,
-} from "../../WebScrapers/RaceOdds";
+} from "../../../WebScrapers/RaceOdds";
 export async function eventFinder(req: Request, res: Response) {
   try {
     const events = await scrapeHorseRaces(
