@@ -108,10 +108,18 @@ button {
 
 @media only screen and (max-width: 600px) {
   .horse-div {
-    background-color: #6495ED;
-    width: 100%;
+    background-color: #45a049;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    margin: 5px;
+    width: 50%;
+    color: white;
+    height: fit-content;
+    border-radius: 10px;
   }
 }
+@media only screen and (min-width: 600px){
 .horse-div{
   background-color: #45a049;
   display: flex;
@@ -122,6 +130,7 @@ button {
   color: white;
   height: fit-content;
   border-radius: 10px;
+}
 }
 button:hover {
   background-color: #45a049;
