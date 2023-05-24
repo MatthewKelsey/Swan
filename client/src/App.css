@@ -1,24 +1,24 @@
 .App {
   text-align: center;
 }
-.root{
+.root {
   flex-direction: column;
 }
-h1{
+h1 {
   text-align: center;
   justify-content: center;
   font-size: 50px;
 }
 
-h2{
-text-align: center;
-font-size: 30px;
+h2 {
+  text-align: center;
+  font-size: 30px;
 }
 
-h3{
+h3 {
   font-size: 25px;
 }
-.nav-bar{
+.nav-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,51 +26,57 @@ h3{
   background-color: #45a049;
   color: White;
   height: fit-content;
-
 }
 
 @media only screen and (max-width: 700px) {
   .race-div {
-      background-color: #45a049;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin: 5px;
-      width: 80%;
-      cursor: pointer;
-      color: white;
-      height: -moz-fit-content;
-      height: fit-content;
-      border-radius: 10px;
+    background-color: #45a049;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+    width: 80%;
+    cursor: pointer;
+    color: white;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 10px;
+  }
+  .nav-bar h1 {
+    font-size: 30px;
+  }
+
+  .nav-menu {
+    height: 10%;
   }
 }
-@media only screen and (min-width: 700px){
-.race-div {
-   background-color: #45a049;
-   display: flex;
-   flex-direction: row;
-   justify-content:space-between;
-   margin: 5px;
-   width: 50%;
-   cursor: pointer;
-   color: white;
-   height: fit-content;
-   border-radius: 10px;
-}
+@media only screen and (min-width: 700px) {
+  .race-div {
+    background-color: #45a049;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+    width: 50%;
+    cursor: pointer;
+    color: white;
+    height: fit-content;
+    border-radius: 10px;
+  }
 }
 
-.race-container{
+.race-container {
   display: flex;
-  align-items: center; 
- max-height: 80vh;
-  flex-direction: column; 
+  align-items: center;
+  max-height: 80vh;
+  flex-direction: column;
   overflow: scroll;
 }
-.race-container::-webkit-scrollbar{
+.race-container::-webkit-scrollbar {
   display: none;
 }
 
-.register{
+.register {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -97,7 +103,7 @@ input[type="password"] {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin: 10px;
@@ -112,7 +118,7 @@ button {
     background-color: #45a049;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
     margin: 5px;
     width: 80%;
     color: white;
@@ -120,23 +126,23 @@ button {
     border-radius: 10px;
   }
 }
-@media only screen and (min-width: 600px){
-.horse-div{
-  background-color: #45a049;
-  display: flex;
-  flex-direction: row;
-  justify-content:space-between;
-  margin: 5px;
-  width: 50%;
-  color: white;
-  height: fit-content;
-  border-radius: 10px;
-}
+@media only screen and (min-width: 600px) {
+  .horse-div {
+    background-color: #45a049;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+    width: 50%;
+    color: white;
+    height: fit-content;
+    border-radius: 10px;
+  }
 }
 button:hover {
   background-color: #45a049;
 }
-.race-info{
+.race-info {
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -147,4 +153,3 @@ button:hover {
   margin: 15px;
   cursor: pointer;
 }
-

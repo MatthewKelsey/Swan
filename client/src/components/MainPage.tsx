@@ -15,25 +15,38 @@ function MainPage(props: MainPageProps) {
 
   useEffect(() => {
     let isMounted = true;
- 
-    getRaces()
-      .then((data) => {
-        if (isMounted && Array.isArray(data)) {
-          setUpcomingRaces(data);
+
+    const cachedRaces = localStorage.getItem("races");
+
+    if (cachedRaces) {
+      // If cached data exists, use it
+      const parsedData = JSON.parse(cachedRaces);
+      setUpcomingRaces(parsedData);
+      setIsLoading(false);
+    } else {
+      // Make the API request if cached data doesn't exist
+      getRaces()
+        .then((data) => {
+          if (isMounted && Array.isArray(data)) {
+            setUpcomingRaces(data);
+            setIsLoading(false);
+
+            // Store the response in localStorage for future use
+            localStorage.setItem("races", JSON.stringify(data));
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.status === 403) {
+            alert("Unauthorized. Please login.");
+          }
           setIsLoading(false);
-        }
-      })
-      .catch((error) => {
-        if (error.response && error.status === 403) {
-          alert("Unauthorized. Please login.");
-        }
-        setIsLoading(false);
-      });
-    
+        });
+    }
+
     return () => {
       isMounted = false;
     };
-  }, [upcomingRaces]);
+  }, []);
 
   return (
     <div className="main-container">
