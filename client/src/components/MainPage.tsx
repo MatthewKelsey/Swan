@@ -15,7 +15,7 @@ function MainPage(props: MainPageProps) {
 
   useEffect(() => {
     let isMounted = true;
-
+ if(!upcomingRaces){
     getRaces()
       .then((data) => {
         if (isMounted && Array.isArray(data)) {
@@ -29,11 +29,11 @@ function MainPage(props: MainPageProps) {
         }
         setIsLoading(false);
       });
-
+    }
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [upcomingRaces]);
 
   return (
     <div className="main-container">
