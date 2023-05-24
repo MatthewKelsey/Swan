@@ -50,9 +50,11 @@ function scrapeHorseRaces(url) {
             if (raceName &&
                 raceName.match(/\d+/) &&
                 !raceName.includes("view full race card")) {
+                const raceArray = raceName.split(' ');
                 const infoObj = {
                     eventUrl: href || "",
                     event: raceName,
+                    eventTime: raceArray[0]
                 };
                 raceInfoList.push(infoObj);
             }

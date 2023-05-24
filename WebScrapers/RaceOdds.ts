@@ -37,6 +37,7 @@ export async function scrapeHorseRacingOdds(url: string): Promise<string> {
 export interface RaceInfo {
   eventUrl: string;
   event: string;
+  eventTime: string;
 }
 
 export async function scrapeHorseRaces(url: string): Promise<string> {
@@ -62,9 +63,12 @@ export async function scrapeHorseRaces(url: string): Promise<string> {
       raceName.match(/\d+/) &&
       !raceName.includes("view full race card")
     ) {
+      const raceArray:string[] =  raceName.split(' ')
+
       const infoObj: RaceInfo = {
         eventUrl: href || "",
         event: raceName,
+        eventTime:raceArray[0]
       };
 
       raceInfoList.push(infoObj);

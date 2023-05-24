@@ -19,19 +19,28 @@ function MainPage(props: MainPageProps) {
     const cachedRaces = localStorage.getItem("races");
 
     if (cachedRaces) {
-     
       const parsedData = JSON.parse(cachedRaces);
-      setUpcomingRaces(parsedData);
+
+      const filteredArray = parsedData.filter((race: { eventTime: string }) => {
+        const [hours, minutes] = race.eventTime.split(":");
+        const currentDate = new Date();
+
+        currentDate.setHours(Number(hours));
+        currentDate.setMinutes(Number(minutes));
+        currentDate.setSeconds(0);
+
+        return currentDate > new Date();
+      });
+
+      setUpcomingRaces(filteredArray);
       setIsLoading(false);
     } else {
-    
       getRaces()
         .then((data) => {
           if (isMounted && Array.isArray(data)) {
+            console.log("API Response:", data);
             setUpcomingRaces(data);
             setIsLoading(false);
-
-            
             localStorage.setItem("races", JSON.stringify(data));
           }
         })
