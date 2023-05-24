@@ -19,12 +19,12 @@ function MainPage(props: MainPageProps) {
     const cachedRaces = localStorage.getItem("races");
 
     if (cachedRaces) {
-      // If cached data exists, use it
+     
       const parsedData = JSON.parse(cachedRaces);
       setUpcomingRaces(parsedData);
       setIsLoading(false);
     } else {
-      // Make the API request if cached data doesn't exist
+    
       getRaces()
         .then((data) => {
           if (isMounted && Array.isArray(data)) {

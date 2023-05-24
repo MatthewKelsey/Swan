@@ -14,9 +14,18 @@ function OddsPage(props: OddsPageProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+
     if (props.currentRace === "") {
       navigate("/home");
     }
+
+const raceInfo = localStorage.getItem(`${props.currentRace}`)
+
+if(raceInfo){
+  const parsedOdds = JSON.parse(raceInfo)
+  setHorseOdds(parsedOdds)
+  setIsLoading(false)
+}else {
     const fetchOdds = async () => {
       const odds = await getOdds(`https://www.betfair.com${props.currentRace}`);
       if (odds) {
@@ -24,7 +33,7 @@ function OddsPage(props: OddsPageProps) {
         setIsLoading(false);
       }
     };
-    fetchOdds();
+    fetchOdds();}
   }, [props.currentRace, navigate]);
 
   if (isLoading) {
