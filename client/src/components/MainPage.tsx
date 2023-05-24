@@ -31,7 +31,7 @@ function MainPage(props: MainPageProps) {
             setUpcomingRaces(data);
             setIsLoading(false);
 
-            // Store the response in localStorage for future use
+            
             localStorage.setItem("races", JSON.stringify(data));
           }
         })

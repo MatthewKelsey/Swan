@@ -30,6 +30,7 @@ if(raceInfo){
       const odds = await getOdds(`https://www.betfair.com${props.currentRace}`);
       if (odds) {
         setHorseOdds(odds);
+        localStorage.setItem(`${props.currentRace}`, JSON.stringify(odds));
         setIsLoading(false);
       }
     };
