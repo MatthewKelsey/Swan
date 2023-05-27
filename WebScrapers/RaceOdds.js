@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.scrapeHorseRaces = exports.scrapeHorseRacingOdds = void 0;
 const puppeteer_1 = __importDefault(require("puppeteer"));
+const date_fns_1 = require("date-fns");
 function scrapeHorseRacingOdds(url) {
     return __awaiter(this, void 0, void 0, function* () {
         const browser = yield puppeteer_1.default.launch({
@@ -50,13 +51,18 @@ function scrapeHorseRaces(url) {
             if (raceName &&
                 raceName.match(/\d+/) &&
                 !raceName.includes("view full race card")) {
-                const raceArray = raceName.split(' ');
+                const raceArray = raceName.split(" ");
+                const today = new Date();
+                const eventTime = raceArray[0];
+                const eventDate = today.toLocaleDateString();
+                const eventDateTime = (0, date_fns_1.parse)(`${eventDate} ${eventTime}`, 'dd/MM/yyyy HH:mm', new Date());
                 const infoObj = {
                     eventUrl: href || "",
                     event: raceName,
-                    eventTime: raceArray[0]
+                    eventDateTime: eventDateTime,
                 };
                 raceInfoList.push(infoObj);
+                console.log(infoObj);
             }
         }
         yield browser.close();

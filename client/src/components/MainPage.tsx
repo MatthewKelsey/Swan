@@ -16,32 +16,28 @@ function MainPage(props: MainPageProps) {
   useEffect(() => {
     let isMounted = true;
 
-    const cachedRaces = localStorage.getItem("races");
+    const cachedRaces = localStorage.getItem(`races`);
 
     if (cachedRaces) {
       const parsedData = JSON.parse(cachedRaces);
-
-      const filteredArray = parsedData.filter((race: { eventTime: string }) => {
-        const [hours, minutes] = race.eventTime.split(":");
+      const filteredArray = parsedData.filter((race: Race) => {
         const currentDate = new Date();
 
-        currentDate.setHours(Number(hours));
-        currentDate.setMinutes(Number(minutes));
-        currentDate.setSeconds(0);
-
-        return currentDate > new Date();
+        return currentDate < new Date(race.eventDateTime);
       });
 
       setUpcomingRaces(filteredArray);
+      localStorage.setItem("races", JSON.stringify(filteredArray));
       setIsLoading(false);
-    } else {
+    }
+
+    if (upcomingRaces.length === 0) {
       getRaces()
         .then((data) => {
           if (isMounted && Array.isArray(data)) {
-            console.log("API Response:", data);
             setUpcomingRaces(data);
             setIsLoading(false);
-            localStorage.setItem("races", JSON.stringify(data));
+            localStorage.setItem(`races`, JSON.stringify(data));
           }
         })
         .catch((error) => {
@@ -55,7 +51,7 @@ function MainPage(props: MainPageProps) {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [upcomingRaces]);
 
   return (
     <div className="main-container">
@@ -66,6 +62,7 @@ function MainPage(props: MainPageProps) {
         <div className="race-container">
           {upcomingRaces.map((race) => (
             <IndividualRace
+              eventDateTime={race.eventDateTime}
               key={race.eventUrl}
               event={race.event}
               eventUrl={race.eventUrl}
