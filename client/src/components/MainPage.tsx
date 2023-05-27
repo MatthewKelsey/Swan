@@ -17,9 +17,9 @@ function MainPage(props: MainPageProps) {
     let isMounted = true;
 
     const cachedRaces = localStorage.getItem(`races`);
-
+    let parsedData =[]
     if (cachedRaces) {
-      const parsedData = JSON.parse(cachedRaces);
+      parsedData = JSON.parse(cachedRaces);
       const filteredArray = parsedData.filter((race: Race) => {
         const currentDate = new Date();
 
@@ -31,7 +31,8 @@ function MainPage(props: MainPageProps) {
       setIsLoading(false);
     }
 
-    if (upcomingRaces.length === 0) {
+    if (parsedData.length === 0) {
+      setIsLoading(true)
       getRaces()
         .then((data) => {
           if (isMounted && Array.isArray(data)) {
@@ -51,7 +52,7 @@ function MainPage(props: MainPageProps) {
     return () => {
       isMounted = false;
     };
-  }, [upcomingRaces]);
+  }, []);
 
   return (
     <div className="main-container">
