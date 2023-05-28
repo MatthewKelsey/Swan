@@ -17,8 +17,8 @@ function MainPage(props: MainPageProps) {
     let isMounted = true;
 
     const cachedRaces = localStorage.getItem(`races`);
-    let parsedData = null
-    if (cachedRaces) {
+    let parsedData = null;
+    if (cachedRaces && cachedRaces.length) {
       parsedData = JSON.parse(cachedRaces);
       const filteredArray = parsedData.filter((race: Race) => {
         const currentDate = new Date();
@@ -29,10 +29,7 @@ function MainPage(props: MainPageProps) {
       setUpcomingRaces(filteredArray);
       localStorage.setItem("races", JSON.stringify(filteredArray));
       setIsLoading(false);
-    }
-
-    if (parsedData === null) {
-      setIsLoading(true)
+    } else {
       getRaces()
         .then((data) => {
           if (isMounted && Array.isArray(data)) {
@@ -48,7 +45,6 @@ function MainPage(props: MainPageProps) {
           setIsLoading(false);
         });
     }
-
     return () => {
       isMounted = false;
     };
