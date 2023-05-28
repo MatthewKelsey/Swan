@@ -17,7 +17,7 @@ function MainPage(props: MainPageProps) {
     let isMounted = true;
 
     const cachedRaces = localStorage.getItem(`races`);
-    let parsedData =[]
+    let parsedData = null
     if (cachedRaces) {
       parsedData = JSON.parse(cachedRaces);
       const filteredArray = parsedData.filter((race: Race) => {
@@ -31,7 +31,7 @@ function MainPage(props: MainPageProps) {
       setIsLoading(false);
     }
 
-    if (parsedData.length === 0) {
+    if (parsedData === null) {
       setIsLoading(true)
       getRaces()
         .then((data) => {
