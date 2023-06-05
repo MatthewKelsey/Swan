@@ -12,43 +12,38 @@ interface MainPageProps {
 function MainPage(props: MainPageProps) {
   const [upcomingRaces, setUpcomingRaces] = useState<Race[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
   useEffect(() => {
-    let isMounted = true;
-
-    const cachedRaces = localStorage.getItem(`races`);
+    const cachedRaces = sessionStorage.getItem('races');
     let parsedData = null;
-    if (cachedRaces && cachedRaces.length) {
+  
+    if (cachedRaces) {
       parsedData = JSON.parse(cachedRaces);
       const filteredArray = parsedData.filter((race: Race) => {
         const currentDate = new Date();
-
         return currentDate < new Date(race.eventDateTime);
       });
-
+  
       setUpcomingRaces(filteredArray);
-      localStorage.setItem("races", JSON.stringify(filteredArray));
       setIsLoading(false);
-    } else {
-      getRaces()
-        .then((data) => {
-          if (isMounted && Array.isArray(data)) {
-            setUpcomingRaces(data);
-            setIsLoading(false);
-            localStorage.setItem(`races`, JSON.stringify(data));
-          }
-        })
-        .catch((error) => {
-          if (error.response && error.status === 403) {
-            alert("Unauthorized. Please login.");
-          }
-          setIsLoading(false);
-        });
     }
-    return () => {
-      isMounted = false;
-    };
+    else{  getRaces()
+      .then((data) => {
+        if ( Array.isArray(data)) {
+          setUpcomingRaces(data);
+          setIsLoading(false);
+          sessionStorage.setItem('races', JSON.stringify(data));
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.status === 403) {
+          alert('Unauthorized. Please login.');
+        }
+        setIsLoading(false);
+      });
+    }
   }, []);
+  
+  
 
   return (
     <div className="main-container">
