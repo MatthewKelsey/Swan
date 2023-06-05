@@ -77,7 +77,7 @@ export async function scrapeHorseRaces(url: string): Promise<string> {
       };
 
       raceInfoList.push(infoObj);
-      console.log(infoObj);
+     
     }
   }
   await browser.close();

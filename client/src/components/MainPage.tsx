@@ -20,10 +20,15 @@ function MainPage(props: MainPageProps) {
       parsedData = JSON.parse(cachedRaces);
       const filteredArray = parsedData.filter((race: Race) => {
         const currentDate = new Date();
+        console.log(currentDate)
+        console.log(new Date(race.eventDateTime))
         return currentDate < new Date(race.eventDateTime);
+
       });
-  
-      setUpcomingRaces(filteredArray);
+      console.log('pasresd-Data', parsedData)
+      console.log(filteredArray)
+      setUpcomingRaces(filteredArray)
+      ;
       setIsLoading(false);
     }
     else{  getRaces()
