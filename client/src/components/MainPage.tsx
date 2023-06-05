@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getRaces, Race } from "../api";
 import IndividualRace from "./IndividualRace";
-import moment from "moment";
+
 interface MainPageProps {
   currentRace: string;
   setCurrentRace: Dispatch<SetStateAction<string>>;
