@@ -67,9 +67,9 @@ export async function scrapeHorseRaces(url: string): Promise<string> {
 
       const today = new Date();
       const eventTime = raceArray[0];
-      const eventDate = today.toLocaleDateString();
-      const eventDateTime = parse(`${eventDate} ${eventTime}`, 'MM/dd/yyyy HH:mm', new Date());
-
+      const eventDate = today.toLocaleDateString("en-GB");
+      const eventDateTime = parse(`${eventDate} ${eventTime}`, 'dd/MM/yyyy HH:mm', new Date());
+      
       const infoObj: RaceInfo = {
         eventUrl: href || "",
         event: raceName,
