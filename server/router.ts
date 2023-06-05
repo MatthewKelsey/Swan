@@ -12,8 +12,8 @@ const router: Router = Router();
 
 // Scraper routes
 
-router.post("/odds", authMiddleware, oddsFinder);
-router.get("/events", authMiddleware, eventFinder);
+router.post("/odds",  oddsFinder);
+router.get("/events",  eventFinder);
 
 // User routes
 
