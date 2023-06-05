@@ -54,15 +54,15 @@ function scrapeHorseRaces(url) {
                 const raceArray = raceName.split(" ");
                 const today = new Date();
                 const eventTime = raceArray[0];
-                const eventDate = today.toLocaleDateString();
+                const eventDate = today.toLocaleDateString("en-GB");
                 const eventDateTime = (0, date_fns_1.parse)(`${eventDate} ${eventTime}`, 'dd/MM/yyyy HH:mm', new Date());
+                console.log(eventDateTime);
                 const infoObj = {
                     eventUrl: href || "",
                     event: raceName,
                     eventDateTime: eventDateTime,
                 };
                 raceInfoList.push(infoObj);
-                console.log(infoObj);
             }
         }
         yield browser.close();
