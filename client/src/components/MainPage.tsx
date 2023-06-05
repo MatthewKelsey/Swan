@@ -13,42 +13,37 @@ function MainPage(props: MainPageProps) {
   const [upcomingRaces, setUpcomingRaces] = useState<Race[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
-    const cachedRaces = sessionStorage.getItem('races');
+    const cachedRaces = sessionStorage.getItem("races");
     let parsedData = null;
-  
+
     if (cachedRaces) {
       parsedData = JSON.parse(cachedRaces);
       const filteredArray = parsedData.filter((race: Race) => {
         const currentDate = new Date();
-        console.log(currentDate)
-        console.log(new Date(race.eventDateTime))
+console.log('Current Date' ,currentDate)
+console.log('Event Date' , new Date(race.eventDateTime))
         return currentDate < new Date(race.eventDateTime);
+      });
 
-      });
-      console.log('pasresd-Data', parsedData)
-      console.log(filteredArray)
-      setUpcomingRaces(filteredArray)
-      ;
+      setUpcomingRaces(filteredArray);
       setIsLoading(false);
-    }
-    else{  getRaces()
-      .then((data) => {
-        if ( Array.isArray(data)) {
-          setUpcomingRaces(data);
+    } else {
+      getRaces()
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setUpcomingRaces(data);
+            setIsLoading(false);
+            sessionStorage.setItem("races", JSON.stringify(data));
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.status === 403) {
+            alert("Unauthorized. Please login.");
+          }
           setIsLoading(false);
-          sessionStorage.setItem('races', JSON.stringify(data));
-        }
-      })
-      .catch((error) => {
-        if (error.response && error.status === 403) {
-          alert('Unauthorized. Please login.');
-        }
-        setIsLoading(false);
-      });
+        });
     }
   }, []);
-  
-  
 
   return (
     <div className="main-container">

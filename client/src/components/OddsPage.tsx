@@ -38,7 +38,7 @@ function OddsPage(props: OddsPageProps) {
       };
       fetchOdds();
     }
-  }, [props.currentRace, navigate, horseOdds]);
+  }, [props.currentRace, navigate]);
 
   if (isLoading) {
     return <div>Loading...</div>;
