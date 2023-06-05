@@ -1,6 +1,5 @@
 import puppeteer, { Browser, Page } from "puppeteer";
-import { parse, format } from "date-fns";
-import enGB from "date-fns/locale/en-GB";
+import { parse, format } from 'date-fns';
 interface HorseObject {
   horseName: string;
   odds: string;
@@ -9,9 +8,9 @@ interface HorseObject {
 export async function scrapeHorseRacingOdds(url: string): Promise<string> {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ["--no-sandbox"],
+    args: ['--no-sandbox']
   });
-
+  
   const page = await browser.newPage();
   await page.goto(url);
 
@@ -39,11 +38,12 @@ export interface RaceInfo {
   eventUrl: string;
   event: string;
   eventDateTime: Date;
+ 
 }
 export async function scrapeHorseRaces(url: string): Promise<string> {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ["--no-sandbox"],
+    args: ['--no-sandbox']
   });
 
   const page = await browser.newPage();
@@ -64,14 +64,12 @@ export async function scrapeHorseRaces(url: string): Promise<string> {
       !raceName.includes("view full race card")
     ) {
       const raceArray: string[] = raceName.split(" ");
+
       const today = new Date();
       const eventTime = raceArray[0];
-      const eventDate = format(today, "dd/MM/yyyy", { locale: enGB }); // Format the date in British format
-      const eventDateTime = parse(
-        `${eventDate} ${eventTime}`,
-        "dd/MM/yyyy HH:mm",
-        new Date()
-      );
+      const eventDate = today.toLocaleDateString();
+      const eventDateTime = parse(`${eventDate} ${eventTime}`, 'MM/dd/yyyy HH:mm', new Date());
+
       const infoObj: RaceInfo = {
         eventUrl: href || "",
         event: raceName,
@@ -79,6 +77,7 @@ export async function scrapeHorseRaces(url: string): Promise<string> {
       };
 
       raceInfoList.push(infoObj);
+     
     }
   }
   await browser.close();
